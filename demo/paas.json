@@ -10,9 +10,9 @@
 	},
 	"roles": {
 		"keepalived": ["pi1,pi2"],
-		"haproxy": ["pi1, pi2"],
-		"docker_manager": ["pi3, pi4"],
-		"docker_worker": ["pi5, pi6"]
+		"haproxy": ["pi1,pi2"],
+		"docker_manager": ["pi3,pi4"],
+		"docker_worker": ["pi5,pi6"]
 	},
 	"docker": {
 		"services": {
