@@ -1,0 +1,30 @@
+{
+	"environment" : ["local"],
+	"nodes": {
+		"pi1": "192.168.1.69",
+		"pi2": "192.168.1.70",
+		"pi3": "192.168.1.71",
+		"pi4": "192.168.1.72",
+		"pi5": "192.168.1.73",
+		"pi6": "192.168.1.74"
+	},
+	"roles": {
+		"keepalived": ["pi1,pi2"],
+		"haproxy": ["pi1, pi2"],
+		"docker_manager": ["pi3, pi4"],
+		"docker_worker": ["pi5, pi6"]
+	},
+	"docker": {
+		"services": {
+			"drupalapp": {
+				"image": "mastermindg/rpi-dns",
+				"replicas": "4"
+			}
+		},
+		"network": {
+			"drupal": {
+				"type": "overlay"
+			}
+		}
+	}
+}

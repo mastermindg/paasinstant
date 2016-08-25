@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+
+require 'paasinstant'
+require 'optparse'
+
+options = {}
+
+option_parser = OptionParser.new do |opts|
+  executable_name = File.basename($PROGRAM_NAME)
+  opts.banner = "
+    PAAS Instant makes it simple to build a fault-tolerant, highly-available cluster on top of Docker.
+
+    Usage: #{executable_name} [options] input_json
+  "
+end
+  
+begin
+  option_parser.parse!
+  rescue OptionParser::InvalidOption => error
+  puts "PAASInstant doesn't recognize that #{ error }"
+  exit
+  rescue OptionParser::AmbiguousOption => error
+  puts "That's an #{ error}"
+  exit
+end
+
+if ARGV.empty?
+  puts "    error: you must include json to build your PAAS system"
+  puts option_parser.help
+else
+  input_json = ARGV[0]
+  #if page_url.match(/https?:\/\/[\S]+/)
+    buildit = Paasinstant::Builder.new(input_json)
+    buildit.processjson
+    buildit.display
+  #else
+  #  puts "You did not enter a valid website address"
+  #end
+end
