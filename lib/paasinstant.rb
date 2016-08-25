@@ -20,8 +20,9 @@ module Paasinstant
 					puts Paint["error [NOT OPEN]: Port 22 is not open on host #{hostname}", :red]
   					puts "\tCheck your connectivity and try again"
   					exit 1
-				end
+  				end
 			end
+			puts Paint["\tConnectivity to hosts confirmed", :green]
 		end
 
 		def provisionroles
