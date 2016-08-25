@@ -2,6 +2,7 @@ require "paasinstant/version"
 require "paasinstant/utils"
 require 'json'
 require 'paint'
+require 'net/ssh'
 
 module Paasinstant
 	class Builder
@@ -30,18 +31,33 @@ module Paasinstant
 			@roles.each do |role, hosts|
 				hosts.each do |host|
 					input = host.split(',')
-					input.each do |h|
-						puts "Let's install #{role} on #{h}"
+					input.each do |hostname|
+						if role == "keepalived" || role == "haproxy"
+							self.send("#{role}".to_sym, hostname)
+						end
 					end
 				end
 			end
 		end
 
+		# Install keepalived
+		def keepalived(nodename)
+			puts "Installing Keepalived to #{nodename}"
+			cmd="ls -altr /"
+			@utils.ssh_run(nodename,cmd)
+		end
+
+
+		# Install haproxy
+		def haproxy(nodename)
+			puts "Installing HAProxy to #{nodename}"
+		end
+
 		def runit
-			puts Paint["Let's start by running some tests", :blue, :bright]
+			puts Paint["--- PAAS Instant...let's get cranking! ----", :blue, :bright]
 			puts
-			puts Paint["Test ssh is available on the nodes", :blue, :bright]
-			self.testnodes
+			#puts Paint["Test ssh is available on the nodes", :blue, :bright]
+			#self.testnodes
 			puts Paint["Provision the roles", :blue, :bright]
 			self.provisionroles
 		end

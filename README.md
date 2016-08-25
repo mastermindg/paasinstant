@@ -7,6 +7,7 @@ The goal of this project is to template a modular Platform-As-A-Service system c
 For now the script assumes that you have nodes already up and running with Docker. In the future we will add additional functionality like EC2 and Vagrant builds.
 - Debian-type (apt) Linux nodes
 - Docker 1.12
+- Key-based SSH to root
 
 ## Goals
 - Scalable (can add more nodes at will)
