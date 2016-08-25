@@ -1,5 +1,6 @@
 # Paasinstant
 
+
 The goal of this project is to template a modular Platform-As-A-Service system capable of Higly Available, Fault Tolerant scaling by using a variety of tools. This is strictly for lab environments and the initial testing will be done on Rasperry Pi's.
 ------------
 
@@ -21,7 +22,6 @@ For now the script assumes that you have nodes already up and running with Docke
 - Docker Swarm for Service Discovery and scaling
 
 ### Demo Cluster
-------------
 - 2 LB's (HAProxy, KeepaliveD)
 - 2 Docker manager nodes
 - 4 Docker worker nodes
