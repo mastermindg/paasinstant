@@ -38,11 +38,11 @@ module Paasinstant
 		end
 
 		def runit
-			puts Paint["Let's start by running some tests", :green]
+			puts Paint["Let's start by running some tests", :blue]
 			puts
-			puts Paint["Test ssh is available on the nodes", :green]
+			puts Paint["Test ssh is available on the nodes", :blue]
 			self.testnodes
-			puts Paint["Provision the roles", :green]
+			puts Paint["Provision the roles", :blue]
 			self.provisionroles
 		end
 	end
