@@ -25,7 +25,7 @@ The goal of this project is to build a Platform-As-A-Service system capable of H
 - 4 Docker worker nodes
 
 #### Installing
-```./build.sh demo/paas.json```
+```exec/paasinstant demo/paas.json```
 
 ### TODOs
 -----
