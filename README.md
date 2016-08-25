@@ -1,6 +1,30 @@
 # Paasinstant
 
-PAAS Instant allows the building of a highly-available, fault-tolerant PAAS system built around Docker.
+The goal of this project is to template a modular Platform-As-A-Service system capable of Higly Available, Fault Tolerant scaling by using a variety of tools. This is strictly for lab environments and the initial testing will be done on Rasperry Pi's.
+------------
+
+## Requirements
+For now the script assumes that you have nodes already up and running with Docker. In the future we will add additional functionality like EC2 and Vagrant builds.
+- Debian-type (apt) Linux nodes
+- Docker 1.12
+
+## Goals
+- Scalable (can add more nodes at will)
+- Highly-Available (you can reach any running nodes easily)
+- Fault-Tolerant (nodes going down won't affect users' experiences)
+- Replicatable (everything lives in code)
+
+## Architecture
+- Docker 1.12 for containers
+- Keepalived for availibility
+- HAProxy for load-balancing
+- Docker Swarm for Service Discovery and scaling
+
+### Demo Cluster
+------------
+- 2 LB's (HAProxy, KeepaliveD)
+- 2 Docker manager nodes
+- 4 Docker worker nodes
 
 ## Installation
 
@@ -17,6 +41,10 @@ And then execute:
 Or install it yourself as:
 
     $ gem install paasinstant
+
+Or run the Demo executable:
+
+    $ exec/paasinstant demo/paas.json
 
 ## Usage
 
