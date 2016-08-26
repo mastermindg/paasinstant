@@ -35,6 +35,9 @@ module Paasinstant
 						if role == "keepalived" || role == "haproxy"
 							self.send("#{role}".to_sym, hostname)
 						end
+						if role.match(/^docker/) 
+							self.buildDocker(role, hostname)
+						end
 					end
 				end
 			end
@@ -42,15 +45,17 @@ module Paasinstant
 
 		# Install keepalived
 		def keepalived(nodename)
-			puts "Installing Keepalived to #{nodename}"
-			cmd="ls -altr /"
+			puts Paint["\tInstalling Keepalived to #{nodename}", :green]
+			cmd="apt-get install -y keepalived"
 			@utils.ssh_run(nodename,cmd)
 		end
 
 
 		# Install haproxy
 		def haproxy(nodename)
-			puts "Installing HAProxy to #{nodename}"
+			puts Paint["\tInstalling HAProxy to #{nodename}", :green]
+			cmd="apt-get install -y haproxy"
+			@utils.ssh_run(nodename,cmd)
 		end
 
 		def runit
